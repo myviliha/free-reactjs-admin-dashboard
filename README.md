@@ -1,5 +1,11 @@
 # VuiAdmin React — Free React Tailwind Admin Dashboard Template
 
+[![demo](https://img.shields.io/badge/demo-react.viliha.com-2563eb)](https://react.viliha.com)
+[![React](https://img.shields.io/badge/React-19-149ECA?logo=react&logoColor=white)](https://react.viliha.com)
+[![license](https://img.shields.io/github/license/myviliha/free-reactjs-admin-dashboard?color=2563eb)](./LICENSE)
+[![deploy](https://github.com/myviliha/free-reactjs-admin-dashboard/actions/workflows/deploy.yml/badge.svg)](https://github.com/myviliha/free-reactjs-admin-dashboard/actions/workflows/deploy.yml)
+[![Sponsor @myviliha](https://img.shields.io/badge/Sponsor-%40myviliha-db61a2?style=for-the-badge&logo=githubsponsors&logoColor=white)](https://github.com/sponsors/myviliha)
+
 VuiAdmin is a free and open-source admin dashboard template built on **React and Tailwind CSS**, from
 [VILIHA](https://viliha.com). Nineteen screens, MIT licensed, on the same design system as the paid
 editions — so what you evaluate here is what you build with.
@@ -7,6 +13,42 @@ editions — so what you evaluate here is what you build with.
 This is the **React** edition: a plain Vite single-page app. No meta-framework, no server, no build
 step you have to learn. Every screen renders from fixtures in its own file, so you can open one, read
 it top to bottom, and see exactly where your data goes.
+
+
+## ❤️ Sponsoring is what keeps this free
+
+VuiAdmin absorbs the work of owning an admin dashboard in production: nineteen screens kept in step
+across six framework editions, a design system underneath them so a card is the same card everywhere,
+dark mode that inverts properly rather than washing out, keyboard and screen-reader behaviour on every
+control, and the parity checks that stop the editions quietly drifting apart.
+
+It is given away under MIT, and keeping it current with React and Vite, Tailwind and the other five
+editions is ongoing work.
+
+**Even $1 a month helps.** It funds bug fixes, new screens, and the next release.
+
+> Sponsors are listed on the [GitHub Sponsors page](https://github.com/sponsors/myviliha) and get our
+> genuine thanks.
+
+### 👉 [Sponsor on GitHub →](https://github.com/sponsors/myviliha) &nbsp;·&nbsp; thank you 🙏
+
+## Screenshots
+
+![The ecommerce dashboard: metrics, monthly sales, monthly target, statistics](./docs/screenshots/dashboard.png)
+
+| Tables | Form elements |
+| ------ | ------------- |
+| [![Basic tables](./docs/screenshots/tables.png)](./docs/screenshots/tables.png) | [![Form elements](./docs/screenshots/forms.png)](./docs/screenshots/forms.png) |
+
+| Calendar | Six shell layouts |
+| -------- | ----------------- |
+| [![Calendar](./docs/screenshots/calendar.png)](./docs/screenshots/calendar.png) | [![Layouts](./docs/screenshots/layouts.png)](./docs/screenshots/layouts.png) |
+
+![Sign in, split screen with the mark on a brand-coloured panel](./docs/screenshots/signin.png)
+
+Every edition renders these same screens from the same fixtures — that is the point of the design
+system sitting underneath them — so one set of shots is the honest set for all of them. Dark mode is
+the toggle in the header on every screen.
 
 ## Overview
 
