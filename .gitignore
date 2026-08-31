@@ -1,5 +1,9 @@
 node_modules/
-dist/
+# **Anchored.** `dist/` unanchored matches any directory of that name at any depth, which quietly
+# excluded `packages/vui-core/dist` — the vendored package's entire published output — so a clone
+# installed an empty `@viliha/vui-core` and the deploy failed on "cannot find module". The leading
+# slash means this app's build output and nothing else.
+/dist/
 *.tsbuildinfo
 .env*.local
 .DS_Store
