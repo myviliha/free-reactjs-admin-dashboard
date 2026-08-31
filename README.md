@@ -1,48 +1,150 @@
-# free-react · the free edition's demo
+# VuiAdmin React — Free React Tailwind Admin Dashboard Template
 
-TailAdmin's free demo, route for route, built on VUI. **:3006.**
+VuiAdmin is a free and open-source admin dashboard template built on **React and Tailwind CSS**, from
+[VILIHA](https://viliha.com). Nineteen screens, MIT licensed, on the same design system as the paid
+editions — so what you evaluate here is what you build with.
+
+This is the **React** edition: a plain Vite single-page app. No meta-framework, no server, no build
+step you have to learn. Every screen renders from fixtures in its own file, so you can open one, read
+it top to bottom, and see exactly where your data goes.
+
+## Overview
+
+* React 19
+* Vite 8
+* TypeScript
+* Tailwind CSS v4
+* react-router for the nineteen routes
+* ApexCharts, FullCalendar and jsvectormap for the data screens
+
+The components come from `@viliha/vui-react` and its framework-free half `@viliha/vui-core`, both
+vendored under [`packages/`](./packages) so a clone installs with nothing private in the way.
+
+### Quick links
+
+* [🚀 Live demo](https://react.viliha.com)
+* [✨ VILIHA](https://viliha.com)
+* [🧩 VuiAdmin templates](https://viliha.com) — React, Vue, Angular, HTML and Laravel editions of this
+  dashboard, plus the Pro tier
+* [⚡ Pro](https://viliha.com) — the server-backed record workflow, more dashboards, more screens
+
+## Getting started
+
+### Prerequisites
+
+* Node.js 20.x or later
+
+### Install and run
 
 ```bash
-pnpm --filter free-react dev     # http://localhost:3006
+git clone git@github.com:myviliha/free-reactjs-admin-dashboard.git
+cd free-reactjs-admin-dashboard
+npm install
+npm run dev
 ```
 
-## Why it is its own app
+The dev server listens on [http://localhost:3000](http://localhost:3000).
 
-The first attempt was to subtract: take the fifty-screen paid app and drop whatever reaches the
-record workflow. It does not work. One **type-only** import of a Pro module took out the app shell
-and cascaded to seventy-six files, leaving fourteen pages, none of them the ones we wanted.
+### Scripts
 
-TailAdmin's free template is a separate, smaller repository for the same reason. This is that: a
-purpose-built app whose every page is free by construction, so nothing has to be removed and nothing
-can leak.
+| Script                | What it does                                                    |
+| --------------------- | --------------------------------------------------------------- |
+| `npm run dev`         | Vite dev server on port 3000                                    |
+| `npm run build`       | Production build into `dist/`                                    |
+| `npm run preview`     | Serve the built `dist/` locally                                 |
+| `npm run check-types` | `tsc --noEmit`                                                  |
+| `npm test`            | Route table, sidebar and fixture checks (`vitest`)              |
 
-## The nineteen routes
+### Configuration
 
-Sixteen behind the shell, two auth screens outside it, and a 404.
+There is nothing to configure to run the demo. Two optional keys change who the footer credits, so a
+team shipping this template does not have to edit a component to put their own name on it:
 
-| Behind the shell                                                                    | Outside it |
-| ----------------------------------------------------------------------------------- | ---------- |
-| `/` dashboard, `/calendar`, `/profile`, `/form-elements`, `/basic-tables`, `/blank` | `/signin`  |
-| `/alerts`, `/avatars`, `/badge`, `/buttons`, `/images`, `/videos`, `/modals`        | `/signup`  |
-| `/line-chart`, `/bar-chart`, `/layouts`                                             | `404`      |
+```bash
+cp .env.local.example .env.local
+```
 
-**Seventeen are the reference's route table and two are ours.** `/modals` and `/layouts` were added
-deliberately: the first because a free template with no dialog is missing the control every admin
-screen needs, and the second because the six shell arrangements are the thing this design system has
-that the reference does not, so the free tier is where a reader should meet them.
+| Key               | Default              | What it sets                                  |
+| ----------------- | -------------------- | --------------------------------------------- |
+| `VITE_SITE_NAME`  | `VILIHA`             | The name in the footer, rendered verbatim     |
+| `VITE_SITE_URL`   | `https://viliha.com` | Where that name links                         |
 
-`FREE_NAV` in `@viliha/vui-core` is the one list the sidebar and the route set both read, so they
-cannot disagree, and `FREE_ROUTES` is derived from it. The Vue edition of this demo reads the same
-list, which is why it lives in the package rather than in `app/nav.ts`.
+## Deploying
 
-## What is deliberately not here
+`npm run build` writes a static `dist/` — no Node process to run. Upload it anywhere.
 
-The searchable and multi-select dropdowns, drag-and-drop upload, the advanced table and the other
-seven dashboards. Those are the paid tier, and they are **absent** rather than shown disabled: a
-control a reader cannot use is worse than one they can see is not included.
+This repository publishes itself: [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml)
+type-checks, tests and builds on every push to `main`, then deploys to GitHub Pages at
+[react.viliha.com](https://react.viliha.com). The custom domain comes from `public/CNAME`, which Vite
+copies into the artifact — Pages reads it there on every deploy, so it has to ship with the build
+rather than being set once in the repository settings.
 
-## Where it deploys
+Because it is a single-page app, a deep link like `/alerts` is an address the host has to answer with
+`index.html`. The build writes a `404.html` beside it, which is what GitHub Pages, Netlify and
+Cloudflare Pages serve for an unmatched path, so deep links work on all three with no configuration.
+A host with rewrite rules (`try_files`, `_redirects`) can point everything at `index.html` instead and
+ignore that file.
 
-Into the storefront's `public/preview/free-react/`, the call the Vue and Angular previews already
-made. `basePath` applies to the build only: Next honours it on the dev server too, and a demo served
-at `/preview/free-react/` while the port says 3006 is a demo nobody finds.
+Serving from a `<user>.github.io/<repo>` URL instead of a domain of its own needs one line: set
+`base: "/<repo>/"` in `vite.config.ts`, so the asset URLs carry the subdirectory.
+
+## What's in it
+
+Nineteen screens:
+
+* **Dashboard** — metrics, monthly sales and target, statistics, a demographic world map, recent orders
+* **Calendar** — FullCalendar with add, edit and delete
+* **User Profile** — profile, security and danger-zone cards with edit dialogs
+* **Forms** — the full input set: text, select, multi-select, date, time, radio, checkbox, switch,
+  file upload, password
+* **Tables** — recent deals, top products, latest transactions, featured campaigns, with search,
+  filter and row actions
+* **Charts** — line and bar
+* **UI elements** — alerts, avatars, badges, buttons, images, modals, videos
+* **Authentication** — sign in and sign up on a split-screen layout
+* **Pages** — a blank starting point, six shell layouts, and a 404
+
+Plus the things a dashboard is judged on rather than counted by: a collapsible sidebar that keeps its
+state across navigation, a rail mode with flyout submenus, dark mode, a route progress bar, and
+`aria-current` on the row you are actually on.
+
+## Project layout
+
+```
+index.html            the single page
+src/
+  main.tsx            entry point
+  App.tsx             the router, and which screens get the shell
+  screens.ts          address → screen, title and layout, for all nineteen
+  screens/            one file per screen
+  shell.tsx           the sidebar, header and footer, wired to react-router
+  dashboard/          the dashboard's cards, charts and map
+  styles.css          Tailwind plus the design system's tokens
+packages/
+  vui-core/           framework-free half: tokens, class strings, fixtures, the route list
+  vui-react/          the React components
+routes.test.ts        the sidebar, the route list and the screen map, held against each other
+fixtures.test.ts      the demo names no real person
+```
+
+`src/screens.ts` is the one place a route exists. `routes.test.ts` holds it against the shared route
+list in both directions, so a screen with no address and an address with no screen are both failures
+rather than a blank page you find in a screenshot.
+
+## Free and Pro
+
+The free edition is this repository: nineteen screens and 64 component families, MIT licensed, with no
+account and no key. The Pro tier adds the server-backed record workflow — list, detail, create, edit
+and delete against your own API — along with more dashboards and the rest of the component catalogue.
+
+VILIHA offers comprehensive templates: the same dashboard in **React, Vue, Angular, HTML and
+Laravel**, built on one design system, so a team can change stack without changing product. See
+[viliha.com](https://viliha.com).
+
+## License
+
+MIT. Use it commercially, fork it, ship it; keep the licence notice.
+
+## Support
+
+If this is useful, a star on GitHub helps. Issues and pull requests are welcome.

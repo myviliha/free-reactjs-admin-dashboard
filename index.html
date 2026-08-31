@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The tab icon. Next took this from `app/icon.png` by convention; Vite has no such convention,
+         so it is linked. Same 512px file, so every edition shows the same mark. -->
+    <link rel="icon" type="image/png" href="/icon.png" sizes="512x512" />
+    <title>VuiAdmin free</title>
+    <meta
+      name="description"
+      content="The free VuiAdmin dashboard: nineteen pages, MIT licensed, built on the same design system as the paid editions."
+    />
+    <!-- A demo, and not something a search engine should offer instead of the product page. -->
+    <meta name="robots" content="noindex, nofollow" />
+
+    <!--
+      **No font link here, deliberately.** `next/font` used to self-host Outfit at build time, and the
+      obvious replacement was a Google Fonts stylesheet: a third-party request on every page load, and
+      a demo that renders in a fallback face when it is opened offline. It is not needed either way,
+      because `@viliha/vui-react/theme.css` ships the `@font-face` rules and the two `.woff2` files,
+      so Vite fingerprints them into `dist/assets` like any other asset.
+    -->
+  </head>
+  <body class="h-full bg-background font-sans text-foreground">
+    <div id="root" class="h-full"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

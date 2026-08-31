@@ -26,7 +26,7 @@ function sources(dir: string, out: string[] = []): string[] {
 }
 
 describe("demo fixtures", () => {
-  const files = sources("app");
+  const files = sources("src");
 
   it("has files to check", () => {
     // A wrong working directory would scan nothing and pass.

@@ -1,0 +1,63 @@
+# Build the demo and publish it to GitHub Pages at https://react.viliha.com.
+#
+# **The checks run before the deploy, in the same job.** A demo is the thing a buyer opens to decide
+# whether the parity claim is true, so a screen that throws on mount must not reach the domain: `test`
+# mounts all nineteen screens and `check-types` is what catches a bad import that still bundles. One
+# job rather than two, because splitting them would mean installing and building twice for no
+# isolation worth having.
+#
+# `base` is left at `/` in `vite.config.ts`, which is correct here and would not be for a
+# `<user>.github.io/<repo>` URL: the custom domain serves this repo at the root. `public/CNAME` is what
+# tells Pages about that domain, and it has to be in the artifact or Pages forgets it on every deploy.
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  # So a deploy can be re-run from the Actions tab without an empty commit.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  # Pages authenticates the artifact upload with OIDC rather than a token.
+  id-token: write
+
+# One deploy at a time, and the newest wins. `cancel-in-progress: false` because cancelling a
+# half-finished deploy is how a site ends up serving one build's HTML with another's assets.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # `npm ci` and not `npm install`: the lockfile is committed, and a deploy that resolves its own
+      # dependency versions is a deploy that can differ from the one that was tested locally.
+      - run: npm ci
+
+      - run: npm run check-types
+
+      - run: npm test
+
+      - run: npm run build
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - id: deploy
+        uses: actions/deploy-pages@v4
