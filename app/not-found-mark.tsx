@@ -1,0 +1,183 @@
+/**
+ * The 404 wordmark, from the supplied `404.svg`.
+ *
+ * **Inlined with `currentColor` rather than served as a file.** Theirs is a pair of SVGs, `404.svg`
+ * and `404-dark.svg`, because every rect in it is a hardcoded `#465FFF` and a fixed blue needs a
+ * second copy for the other colour scheme. Every one of those is `currentColor` here, so one
+ * declaration covers light and dark, it follows a buyer's retheme instead of staying our blue, and
+ * there is no request for it at all.
+ *
+ * `aria-hidden`, and the heading below it says the same thing in words: two announcements of "404"
+ * is one too many, and the sentence is the useful one.
+ */
+export function NotFoundMark({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 472 158"
+      fill="none"
+      className={className}
+      aria-hidden="true"
+      focusable="false"
+    >
+      <rect
+        x="203.103"
+        y="41.7015"
+        width="22.1453"
+        height="20.7141"
+        rx="2.63433"
+        fill="currentColor"
+        stroke="currentColor"
+        strokeWidth="0.752667"
+      />
+      <rect
+        x="246.752"
+        y="41.7015"
+        width="22.1453"
+        height="20.7141"
+        rx="2.63433"
+        fill="currentColor"
+        stroke="currentColor"
+        strokeWidth="0.752667"
+      />
+      <rect
+        x="258.201"
+        y="98.2303"
+        width="22.1453"
+        height="20.7141"
+        rx="2.63433"
+        fill="currentColor"
+        stroke="currentColor"
+        strokeWidth="0.752667"
+      />
+      <rect
+        x="191.654"
+        y="98.2303"
+        width="22.1453"
+        height="20.7141"
+        rx="2.63433"
+        fill="currentColor"
+        stroke="currentColor"
+        strokeWidth="0.752667"
+      />
+      <rect
+        x="207.396"
+        y="82.847"
+        width="57.5655"
+        height="20.7141"
+        rx="2.63433"
+        fill="currentColor"
+        stroke="currentColor"
+        strokeWidth="0.752667"
+      />
+      <rect
+        x="152.769"
+        y="15.167"
+        width="166.462"
+        height="130.311"
+        rx="28"
+        stroke="currentColor"
+        strokeWidth="24"
+      />
+      <rect
+        x="0.0405273"
+        y="0.522461"
+        width="32.6255"
+        height="77.5957"
+        rx="6.26271"
+        fill="currentColor"
+      />
+      <rect
+        x="0.0405273"
+        y="0.522461"
+        width="32.6255"
+        height="77.5957"
+        rx="6.26271"
+        stroke="currentColor"
+      />
+      <rect
+        x="75.8726"
+        y="3.16748"
+        width="32.6255"
+        height="154.31"
+        rx="6.26271"
+        fill="currentColor"
+      />
+      <rect
+        x="75.8726"
+        y="3.16748"
+        width="32.6255"
+        height="154.31"
+        rx="6.26271"
+        stroke="currentColor"
+      />
+      <rect
+        x="16.7939"
+        y="91.3442"
+        width="32.6255"
+        height="77.5957"
+        rx="6.26271"
+        transform="rotate(-90 16.7939 91.3442)"
+        fill="currentColor"
+      />
+      <rect
+        x="16.7939"
+        y="91.3442"
+        width="32.6255"
+        height="77.5957"
+        rx="6.26271"
+        transform="rotate(-90 16.7939 91.3442)"
+        stroke="currentColor"
+      />
+      <rect
+        x="363.502"
+        y="0.522461"
+        width="32.6255"
+        height="77.5957"
+        rx="6.26271"
+        fill="currentColor"
+      />
+      <rect
+        x="363.502"
+        y="0.522461"
+        width="32.6255"
+        height="77.5957"
+        rx="6.26271"
+        stroke="currentColor"
+      />
+      <rect
+        x="439.334"
+        y="3.16748"
+        width="32.6255"
+        height="154.31"
+        rx="6.26271"
+        fill="currentColor"
+      />
+      <rect
+        x="439.334"
+        y="3.16748"
+        width="32.6255"
+        height="154.31"
+        rx="6.26271"
+        stroke="currentColor"
+      />
+      <rect
+        x="380.255"
+        y="91.3442"
+        width="32.6255"
+        height="77.5957"
+        rx="6.26271"
+        transform="rotate(-90 380.255 91.3442)"
+        fill="currentColor"
+      />
+      <rect
+        x="380.255"
+        y="91.3442"
+        width="32.6255"
+        height="77.5957"
+        rx="6.26271"
+        transform="rotate(-90 380.255 91.3442)"
+        stroke="currentColor"
+      />
+    </svg>
+  );
+}

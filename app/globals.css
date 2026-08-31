@@ -1,0 +1,29 @@
+/* The one stylesheet: Tailwind, then the design system's tokens.
+ *
+ * `@source` points Tailwind at the component package, whose class strings live in
+ * `@viliha/vui-core` and reach the components through imports. Without it Tailwind treats every one
+ * of them as unused and the demo renders as bare HTML, which is how the Vue preview once shipped.
+ */
+@import "tailwindcss";
+@source "../../../../packages/react/src";
+@import "@viliha/vui-react/theme.css";
+@import "@viliha/vui-react/fullcalendar.css";
+/* The free demo's own look, shared with every other free edition (`PD-140`). It was declared here
+   and again in the Vue demo, and the HTML export could reach neither. */
+@import "@viliha/vui-react/free-demo.css";
+
+/* Next's font variable, and nothing else.
+ *
+ * **The three token overrides and the card-radius rule that used to sit here have moved** to
+ * `@viliha/vui-react/free-demo.css`, imported above (`PD-140`). This comment and its twin in the Vue
+ * demo both said the same thing: the values are the free demo's design rather than this app's, they
+ * were written twice because a package for four declarations is the speculative generality `E-03`
+ * forbids, and "if a third edition needs them, that is the moment the shared file earns its place".
+ * The HTML edition is that third, and it could never have had them: its pages are a static export
+ * that carries `vui.css` and nothing a Next app declares locally.
+ *
+ * What is left is genuinely this app's. `--font-outfit` is the variable `next/font` generates, so it
+ * exists only where Next is running. */
+@theme {
+  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+}
